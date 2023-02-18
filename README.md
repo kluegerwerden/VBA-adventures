@@ -1,8 +1,10 @@
 # VBA-adventures
-A small collection of VBA Subs I've written 
+a small collection of subs
 
-1. Rebalance
-    small sub that filters a tabel by a named cell on a different worksheet
-    copies a column of the filtered table to the "main" worksheet 
-    calculates if the exsisting column of the "main" worksheet are equal and if not places the delta in a third column
+
+## 1. Table of Contents
+
+- Rebalance (sub)
+    * filters a table by a named celled on the data worksheet
+    * copies a column of the filtered table to the primary worksheet and performance a calculation if the adjacent cell value is equal and if not calaculates the difference between the two.
   
