@@ -1,2 +1,2 @@
 # VBA-adventures
-Storage space for different VBA projects
+A small collection of VBA Subs I've written 
