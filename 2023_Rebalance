@@ -1,0 +1,45 @@
+Option Exlicit
+
+Sub Rebalance()
+
+'declare variables
+Dim wsInput As Worksheet
+Dim wsData As Worksheet
+Dim lo as ListObject
+Dim Client as Range 'wsInput has a named celled called client as well
+
+Dim Total_Assets as Range
+Dim i as Integer
+
+'define variables
+Set wsInput = Sheets("Your_Sheet_Name")
+Set wsData = Sheets("Your_Data")
+Set lo = wsData.ListObjects("Your_Table_Name")
+Set Mandant = wsInput.Range("Client")
+Total_Assets = wsInput.Cells(24,4)
+
+'filter for client and copying the data to another worksheet
+lo.range.Autofilter _
+  Field:=1, _
+  Criteria1:=Client
+
+lo.DataBodyRange.Columsn(3).Copy
+wsInput.Range("C5").PastSepcial xlPasteValues
+
+'sum of the Assets
+Total_Assets = "=Sum(R[-19]C[-1]:R[-1]C[-1])"
+
+'checking if Soll/ist are equal if not the rebalance amount is added to the worksheet
+For i = 1 to 19
+  If Cells(i + 4, 2) <> Cells(i + 4, 3) / Total_Assets * 100 then
+     Cells(i + 4, 4) = Cells(i + +4 , 3) / Total_Assets)) * Total_Assets
+  Else
+    Cells( i + 4, 4) = 0
+  End if
+Next i
+
+'cleating the total and selecint the client
+Total_Assets.ClearContents
+wsInput.Range("Client").Select
+
+End Sub
